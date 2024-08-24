@@ -3,6 +3,8 @@
 
 Scrapers for multiple platforms integrated into popular solana bots
 
+Written in golang
+
 
 
 
