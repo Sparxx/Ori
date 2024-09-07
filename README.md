@@ -21,7 +21,7 @@ Written in golang
 
 #### Download:
 
-Head over to [releases](https://github.com/Sparxx/Ori/releases/new) to download the latest version for your os
+Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the latest version for your os
 
 
 #### TOML Config:
