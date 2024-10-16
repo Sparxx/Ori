@@ -1,4 +1,3 @@
-
 # Ori
 
 Scrapers for multiple platforms integrated into popular solana bots
@@ -7,14 +6,15 @@ Written in golang
 
 If you'd like to tip you can send sol to sparx.sol
 
-* Indicates private/paid module - if interested dm @sparxlol on discord or twitter
+"*" Indicates private/paid module - if interested dm @sparxlol on discord or twitter
 
 
 ## Features
 
 - Telegram scraping
 - Discord scraping
-
+- Ethereum* / Solana support
+- Copytrade Scraper Utilities*
 
 
 ## Documentation
@@ -189,30 +189,13 @@ Eth scrapers will scrape ethereum token addresses with the same filters and setu
 
 All scrapers allow the selection of a text file of tokens/wallets from misc folder or you can copy/paste a list or single token in
 
-For large lists, it is recommended to use proxies. ISP's work very well since all sites have mild cloudflare. Resi's work but for very large lists they struggle, not ideal
+For large lists, it is recommended to use proxies. ISP's work very well since all sites have low cloudflare. Residential proxies work but for very large lists they struggle, not ideal
 
-For small lists you can run local on normal scraper modules - For pumpfun top traders proxies are highly recommended
+For small lists of tokens you can run local on normal scraper modules - For pumpfun top traders proxies are highly recommended since rate limits are high
 
-**MODULES**":
+**MODULES**:
 
 Pumpfun top traders  - All trade stats for pumpfun coins pre-bonding 
 
 Top Traders - Scrapes top traders for a coin(s)
-
-Wallet Stats - Fetches stats for a wallet(s) including winrate, buys, sells, pnl, etc..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
