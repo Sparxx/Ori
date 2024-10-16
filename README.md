@@ -199,3 +199,6 @@ Pumpfun top traders  - All trade stats for pumpfun coins pre-bonding
 
 Top Traders - Scrapes top traders for a coin(s)
 
+Wallet Stats - Fetches stats for a wallet(s) including winrate, buys, sells, pnl, etc..
+
+*All data is exported into a csv and put in misc folder*
