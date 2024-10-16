@@ -5,9 +5,9 @@ Scrapers for multiple platforms integrated into popular solana bots
 
 Written in golang
 
+If you'd like to tip you can send sol to sparx.sol
 
-
-
+* Indicates private/paid module - if interested dm @sparxlol on discord or twitter
 
 
 ## Features
@@ -27,20 +27,34 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
 #### TOML Config:
     [General]
 
+    key - For private / purchased modules. Not needed for discord/telegram scraping on solana
+
+    webhook - discord webhook for copytrade utils. Not used in other modules yet.
+
     buy_once - bot will only attempt to snipe a ca once. Any time the ca is sent 
     again it will not attempt to buy
-
+    
     variable_market - for pumpfun urls only. Attempts to determine the proper 
     market being pumpfun/ray - Requires Solana RPC
-
+    
     auto_update - set to true to automatically download and run the latest version
+    
+    blacklisted_words - blacklisted words to block when filtering. e.g 'hi' is blacklisted means any message with hi in it should not be scraped - SEE REGEX SECTION
 
-    blacklisted_words - blacklisted words to block when filtering. e.g 'hi\b' is blacklisted means any message with hi in it should not be scraped - SEE REGEX SECTION
+    whitelisted_words - whitelisted words to run, same as blacklisted in format. Whitelisted meaning only messages with x word will be scraped. blacklist overrides whitelist.
 
+    blacklisted_tokens - a text file (tokens.txt or any name) that contains a list of token addresses. The bot updates live with anything you add while it's running
+
+    retries - retries for ALL requests. This includes solana + non solana http requests
+    
     port - port which quicktask is hosted on
+    
+    markets - markets to attempt to snipe for token address, e.g ['raydium', 'meteora', 'pumpfun'] - Blood will only work with these 3 markets currently.
 
-    markets - markets to attempt to snipe for token address, e.g raydium, orca, meteora
+    task_filepath - currently ONLY FOR BLOOD - filepath to task file for migrations
 
+    start_task_on_migration - true/false - will start the specified task file and replace ca with the one detected if token is migrating - must have variable_market true
+    
 
     [Telegram]
 
@@ -54,11 +68,13 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
 
     group_ids - ID's from a groupchat you want to monitor - use @raw_data_bot but remove - before the number
 
+    topic_ids - ID's from a groupchat that is divided into topics. use 0 as the ID for the #general topic channel. To get other topic ID's you can create an invite link and its the last number in the url
+
     phone_number - # linked to the tg account used for monitoring - include country code (1 for USA)
 
-    strict_casing - will only scrape messages when group_id and client_id match
+    strict_casing - will only scrape messages when group_id and client_id match - if scraping topics, it will only scrape when topic_id, group_id, and client_id all match
 
-    scrape_dms - if true will only scrape tg dms - ignores groupchats
+    scrape_dms - if true will scrape tg dms - uses only client_ids
 
 
     [Discord]
@@ -73,12 +89,16 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
 
     strict_casing - if true will only scrape if user id and channel id match - ignores server id
 
+    scrape_dms - enables scraping of dms - useful to reduce http load if you don't want to use proxies
+
+    scrape_embeds - enables scraping of webhooks/embeds - useful to reduce http load if you don't want to use proxies
+
 
     [solana]
 
-    rpc - Solana rpc http url used for requests
+    rpc - Solana rpc http url used for requests - MUST BE PRESENT NOW FOR BOT TO WORK
 
-    retries - the amount of retries for solana requests made 
+    ws - solana websocket url
 
 
 #### Telegram Setup:
@@ -91,8 +111,13 @@ Once you have your app ID and hash ID, make sure your phone number is correct an
 
 Once logged in, the bot saves your login as a session file in the sessions folder
 
-In order to login with a different account, move or delete the session.dat file and it will recreate one with the new app id + hash + number
+You can use different session files in different config setups, but make sure to rename them when genning multiple or they will just be overwritten
 
+In order to login with a different account, move or rename the session.dat file and it will recreate one with the new app id + hash + number
+
+**TOPICS** 
+
+To scrape topics you can get the topic id from the last number in an invite link to that specific topic. To scrape the #General channel - use 0 as the topic_id
 
 #### Discord Setup:
 
@@ -105,6 +130,8 @@ In order to get channel, server and user ID's, enable developer mode under Advan
 The bot can monitor as many users/channel ID's as you want but keep in mind on discord's end there are rate limits
 
 To scrape dms or groupchats, get the channel ID from them
+
+**IMPORTANT - If there is a lot of http error spam - mainly due to scraping webhooks, dms, message edits, and more all at once, try using proxies**
 
 **RISK - Using user tokens to scrape can lead to a ban as it is against Discord TOS**
 
@@ -127,17 +154,56 @@ e.g I have user ID and channel ID filled without strict casing, any message sent
 by the user even in other discords will be scraped - if you add server ID it will limit it to only those servers
 
 
-#### Blacklist:
+#### Blacklist & Whitelist:
 
-Blacklist uses golang regex format
+uses golang regex format
 
 you can go [here](https://regex101.com/) to test your regex 
 
 in blacklisted words, you do not have to input (i?) or chain your words with "|", its automatically done
 
-format example is ['\bword1\b', 'word2', 'word3']
+same applies to whitelisted words
 
-You also have the freedom to metacharacters to your words for better filtering
+format example is ['word1', 'word2', 'word3']
+
+You also have the freedom to add metacharacters to your words for better filtering
+
+
+#### Proxies:
+
+In proxies folder, create any text file - can be named whatever - and put IP:PORT or IP:PORT:USER:PASS proxies - Can use SOCKS5 for some modules
+
+For telegram, both HTTP and SOCKS5 are supported - Some http proxies may not work - SOCKS5 worked every time extremely well in testing
+
+Use HTTP for everything else including copytrade utility scrapers 
+
+
+#### Eth Scrapers*: 
+
+Eth scrapers will scrape ethereum token addresses with the same filters and setup as the sol modules. Ori will send the token to maestro or bananagun so make sure you have them set up to just receive a token address and run
+
+
+#### Copytrade Utils*:
+
+**IMPORTANT**:
+
+All scrapers allow the selection of a text file of tokens/wallets from misc folder or you can copy/paste a list or single token in
+
+For large lists, it is recommended to use proxies. ISP's work very well since all sites have mild cloudflare. Resi's work but for very large lists they struggle, not ideal
+
+For small lists you can run local on normal scraper modules - For pumpfun top traders proxies are highly recommended
+
+**MODULES**":
+
+Pumpfun top traders  - All trade stats for pumpfun coins pre-bonding 
+
+Top Traders - Scrapes top traders for a coin(s)
+
+Wallet Stats - Fetches stats for a wallet(s) including winrate, buys, sells, pnl, etc..
+
+
+
+
 
 
 
