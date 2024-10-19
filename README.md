@@ -197,7 +197,7 @@ For AFK - websocket is hosted on ws://localhost:8081/ <- send token address / wa
 
 **MODULES**:
 
-Pumpfun top traders  - All trade stats for pumpfun coins pre-bonding 
+Pumpfun top traders  - All trade stats for pumpfun coins pre-bonding - RATE LIMIT IS HIGH - spam with proxies if doing a lot of tokens at once
 
 Top Traders - Scrapes top traders for a coin(s)
 
