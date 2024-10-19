@@ -6,7 +6,7 @@ Written in golang
 
 If you'd like to tip you can send sol to sparx.sol
 
-"*" Indicates private/paid module - if interested dm @sparxlol on discord or twitter
+"*" Indicates private/paid module - if interested join https://discord.gg/QgXSzPR9
 
 
 ## Features
@@ -192,6 +192,8 @@ All scrapers allow the selection of a text file of tokens/wallets from misc fold
 For large lists, it is recommended to use proxies. ISP's work very well since all sites have low cloudflare. Residential proxies work but for very large lists they struggle, not ideal
 
 For small lists of tokens you can run local on normal scraper modules - For pumpfun top traders proxies are highly recommended since rate limits are high
+
+For AFK - websocket is hosted on ws://localhost:8081/ <- send token address / wallet address in type string for it to be scraped
 
 **MODULES**:
 
