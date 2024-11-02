@@ -6,7 +6,7 @@ Written in golang
 
 If you'd like to tip you can send sol to sparx.sol
 
-"*" Indicates private/paid module - if interested join https://discord.gg/QgXSzPR9
+"*" Indicates private/paid module - if interested join [discord](https://discord.gg/u8EUjBDbhb) or dm me @sparxlol on twit/disc
 
 
 ## Features
