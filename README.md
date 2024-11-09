@@ -2,6 +2,10 @@
 
 Scrapers for multiple platforms integrated into popular solana bots
 
+Currently Supporting
+- Peppermints
+- Blood Solutions
+
 Written in golang
 
 If you'd like to tip you can send sol to sparx.sol
