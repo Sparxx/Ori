@@ -48,6 +48,8 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
     whitelisted_words - whitelisted words to run, same as blacklisted in format. Whitelisted meaning only messages with x word will be scraped. blacklist overrides whitelist.
 
     blacklisted_tokens - a text file (tokens.txt or any name) that contains a list of token addresses. The bot updates live with anything you add while it's running
+    
+    custom_qt_url - allows the use of a custom QT url to POST - replace your token address field with %s - e.g http://localhost:8080/?token=%s
 
     retries - retries for ALL requests. This includes solana + non solana http requests
     
