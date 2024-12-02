@@ -68,6 +68,8 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
 
     tg_hash - The hash id for the telegram app you create
 
+    session_file - the name of the session file for telegram. If you don't have one genned just put 'session.dat'
+
     client_ids - ID's from the accounts you want to monitor - forward any msg to @getidsbot
 
     channel_ids - ID's from the channels you want to monitor - forward any msg to @getidsbot - remove -100
@@ -105,6 +107,8 @@ Head over to [releases](https://github.com/Sparxx/Ori/releases/) to download the
     rpc - Solana rpc http url used for requests - MUST BE PRESENT NOW FOR BOT TO WORK
 
     ws - solana websocket url
+
+    retries - retries for all solana requests
 
 
 #### Telegram Setup:
